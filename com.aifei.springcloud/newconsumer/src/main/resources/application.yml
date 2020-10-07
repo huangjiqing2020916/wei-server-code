@@ -1,0 +1,18 @@
+server:
+  port: 9083 #服务注册中心端口号
+
+spring:
+  application:
+    name: service-consumer #服务名称--调用的时候根据名称来调用该服务的方法
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springcloud-plus
+    username: root
+    password: 123456
+
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://127.0.0.1:9081/eureka/
+#  instance:
+#    hostname: 172.16.0.41 #服务注册中心IP地址

@@ -1,0 +1,28 @@
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.aifei.entity
+server:
+  port: 9002
+spring:
+  datasource:
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat,wall,logback
+    initialSize: 5
+    maxActive: 20
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxWait: 60000.0
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 5
+    password: 123456
+    poolPreparedStatements: true
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    url: jdbc:mysql://localhost:3306/ease-run?serverTimezone=Asia/Chongqing&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&verifyServerCertificate=false&autoReconnct=true&autoReconnectForPools=true&allowMultiQueries=true
+    useGlobalDataSourceStat: true
+    username: root
+    validationQuery: SELECT 'x'
+  redis:
+    host: localhost:6379

@@ -1,0 +1,11 @@
+project:eureka              service:service-eureka      port:9081
+project:provider            service:service-provider    port:9082
+project:provider2           service:service-provider    port:9088
+project:consumer            service:service-consumer    port:9083
+project:hystrix             service:service-hystrix     port:9084
+project:gateway             service:service-gateway     port:9085
+project:mail                service:service-mail        port:9086
+project:sentinel            service:service-sentinel    port:9087
+project:openfeign           service:service-openfeign   port:9089
+project:session-redis       service:session-redis       port:9090
+project:session-redis2      service:session-redis2      port:9091

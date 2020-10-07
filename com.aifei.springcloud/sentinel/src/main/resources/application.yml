@@ -1,0 +1,6 @@
+server:
+  port: 9087 #服务端口号
+
+spring:
+  application:
+    name: service-sentinel #服务名称--调用的时候根据名称来调用该服务的方法

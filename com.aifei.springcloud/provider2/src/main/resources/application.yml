@@ -1,0 +1,38 @@
+server:
+  port: 9088 #服务端口号--该端口不要冲突
+
+spring:
+  application:
+    name: service-provider #服务名称--调用的时候根据名称来调用该服务的方法--名字绝对不能改，改了就访问不到了
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springcloud-plus
+    username: root
+    password: 123456
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging:
+  level:
+    com.aifei.mapper: debug
+
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://127.0.0.1:9081/eureka/
+
+

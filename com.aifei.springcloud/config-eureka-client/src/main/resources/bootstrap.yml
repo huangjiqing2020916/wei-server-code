@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: prod
+  application:
+    name: config-single-client
+  cloud:
+    config:
+      uri: http://14.29.253.64:9301
+      label: master
+      profile: prod
+
+
+---
+spring:
+  profiles: dev
+  application:
+    name: config-single-client
+  cloud:
+    config:
+      uri: http://14.29.253.64:9301
+      label: master
+      profile: dev
+
+---
+
+

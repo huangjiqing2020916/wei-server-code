@@ -1,0 +1,51 @@
+server:
+  port: 9085 #服务端口号
+
+spring:
+  application:
+    name: service-gateway #服务名称--调用的时候根据名称来调用该服务的方法
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+        - id: gatewayTest   #路由的id，没有固定规则但要求唯一，建议配合服务名
+          uri: http://localhost:9083
+          predicates:
+            - Path=/consumer/go/**
+            - After=2020-09-26T16:59:29.460+08:00[Asia/Shanghai]  #只有在这个时间以后请求才有效果
+
+        - id: gatewayTest2
+          uri: http://localhost:9083
+          predicates: #为了实现一组匹配规则，让请求过来找到对应的Route进行处理
+            - Path=/consumer/goto/**
+
+
+        - id: ribbonTest
+          uri: lb://service-provider
+          predicates:
+            - Path=/get/**
+            #- After=2020-09-26T15:59:29.460+08:00[Asia/Shanghai]  #断言：只有在这个时间之后请求才有效果（之后）
+
+            #- Before=2020-09-26T15:59:29.460+08:00[Asia/Shanghai]  #断言：只有在这个时间之前请求才有效果（之前）
+
+            #- Between=2020-09-26T15:59:29.460+08:00[Asia/Shanghai],2020-09-26T19:59:29.460+08:00[Asia/Shanghai]  #断言：只有在这俩个时间段之间请求才有效果（之间）
+
+            #- Cookie=username,zzyy
+            #CMD测试 curl http://localhost:9085/consumer/goto/CloudData --cookie "username=zzyy"
+
+            #- Header=X-Request-Id, \d+  #请求头要有X-Request-Id属性并且值为正数的正则表达式
+            #CMD测试 curl http://localhost:9085/consumer/goto/CloudData -H "X-Request-Id:-123"
+
+            #- Host=
+            #- Method=GET\POST  #只能是GET或者是POST请求
+
+            #- Path=
+            #- Query=username, \d+  #请求查询要有username属性并且值为正数的正则表达式
+
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://127.0.0.1:9081/eureka/
+

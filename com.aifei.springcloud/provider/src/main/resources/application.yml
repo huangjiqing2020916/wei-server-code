@@ -1,0 +1,58 @@
+server:
+  port: 9082 #服务端口号
+
+spring:
+  application:
+    name: service-provider #服务名称--调用的时候根据名称来调用该服务的方法
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springcloud-plus
+    username: root
+    password: 123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        # 最大空闲连接
+        max-idle: 8
+        # 最小空闲链接
+        min-idle: 0
+        # 最大连接数（负数表示没有限制）
+        max-active: 8
+        # 最大阻塞等待时间（负数表示没有限制）
+        max-wait: 0
+      # 链接超时时间（毫秒）
+      timeout: 200
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging:
+  level:
+    com.aifei.mapper: debug
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+
+
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://127.0.0.1:9081/eureka/
+#      defaultZone: http://172.16.0.31:1010/eureka/
+

@@ -1,0 +1,16 @@
+server:
+  port: 9084 #服务端口
+
+spring:
+  application:
+    name: service-hystrix
+
+feign:
+  hystrix:
+    # feign熔断器开关
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://127.0.0.1:9081/eureka/
